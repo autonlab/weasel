@@ -319,7 +319,7 @@ class E2ETrainer:
 
         return (epoch_loss, enc_loss, end_loss), n_certains  # Return the loss value to track training progress
 
-    def fit(self, train_loader, valloader, hyper_params, testloader=None, device='cuda', model=None):
+    def fit(self, train_loader, valloader, hyper_params, testloader=None, device='cuda', model=None, use_wandb=True):
         r"""
         :param train_loader: A torch DataLoader that returns the training batches (L, X), where
                                 L is the label matrix of the batch (n, m)
@@ -353,7 +353,8 @@ class E2ETrainer:
             self.model = model
 
         # Instantiate the two optimizers for the encoder and downstream network
-        wandb.watch(self.model)
+        if use_wandb:
+            wandb.watch(self.model)
         self.total_epochs = hyper_params["epochs"]
         adjust_thresh = hyper_params['adjust_thresh']
         self.trainloader = train_loader
@@ -413,7 +414,8 @@ class E2ETrainer:
                             'Test Precision': test_stats['precision'], 'Test Recall': test_stats['recall'] }
                     }
 
-                wandb.log(logging_dict, step=self.num_datapoints_seen)
+                if use_wandb:
+                    wandb.log(logging_dict, step=self.num_datapoints_seen)
 
                 # refresh the training bar
                 update_tqdm(t, train_loss=loss, n_cer=n_certains, time=time.time() - start_t, val_stats=val_stats,

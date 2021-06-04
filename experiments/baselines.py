@@ -122,7 +122,8 @@ def train_downstream(mlp_params, features, soft_labels, valloader, testloader, s
 
 
 def train_supervised(train_data, mlp_params, hyper_params, dataset, model_dir=None, valloader=None, testloader=None,
-                     prefix='Superv.', trainloader=None):
+                     prefix='Superv.', trainloader=None, wandb_run=None):
+    import wandb
     # Data handling
     seed = hyper_params['seed']
     _, trainer = get_dataset_and_trainer(dataset, mlp_params)  # DownstreamDP
@@ -134,10 +135,17 @@ def train_supervised(train_data, mlp_params, hyper_params, dataset, model_dir=No
                              trainloader=trainloader)
     # Test MLP
     _, _, end_stats = trainer.evaluate(testloader, device="cuda", print_prefix=f'{prefix} MLP END:\n')
-    _, _, mlp_stats = trainer.evaluate(testloader, device="cuda", print_prefix=f'{prefix} MLP BEST:\n',
+    _, _, best_stats = trainer.evaluate(testloader, device="cuda", print_prefix=f'{prefix} MLP BEST:\n',
                                        use_best_model=True)
-    mlp_stats['validation_val'] = best_valid
-    stats = {"MLP_best": mlp_stats, 'MLP_end': end_stats}
+    if wandb_run is not None:
+        wandb.log({'Final Test F1': best_stats['f1'], 'Final Test AUC': best_stats['auc'],
+                   'Final Test Prec.': best_stats['precision'], 'Final Test Rec.': best_stats['recall'],
+                   f"Best Val {hyper_params['val_metric'].upper()}": best_valid}
+                  )
+        wandb.run.summary["f1"] = best_stats['f1']
+        wandb_run.finish()
+    best_stats['validation_val'] = best_valid
+    stats = {"MLP_best": best_stats, 'MLP_end': end_stats}
     print("~+~" * 20, "SUPERVISED END", "~+~" * 20)
     return stats
 

@@ -136,7 +136,7 @@ class DownstreamBaseTrainer:
             return self.model_class(self.downstream_params)
         return self.model
 
-    def fit(self, train_data, hyper_params, valloader=None, testloader=None, device="cuda", trainloader=None):
+    def fit(self, train_data, hyper_params, valloader=None, testloader=None, device="cuda", trainloader=None, use_wandb=True):
         self.batch_size = hyper_params["batch_size"]
         if trainloader is None:
             trainloader = DataLoader(train_data, batch_size=self.batch_size, pin_memory=True, shuffle=True)
@@ -196,7 +196,8 @@ class DownstreamBaseTrainer:
                                     }
                 self.tqdm_update(t, train_loss=epoch_loss, time=duration, val_stats=val_stats, test_stats=test_stats)
                 best_valid_val = self._save_best_model(val_stats, best_valid_val, hyper_params, metric_name=val_metric)
-                wandb.log(logging_dict, step=example_count)
+                if use_wandb:
+                    wandb.log(logging_dict, step=example_count)
 
         if valloader is None:
             self._save_model(hyper_params)  # save last checkpoint if no validation loader was given

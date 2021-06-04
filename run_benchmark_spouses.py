@@ -7,9 +7,8 @@ import numpy as np
 from flyingsquid.label_model import LabelModel as LM_Triplets
 from snorkel.labeling.model import LabelModel as LM_Snorkel
 
-from baselines.baselines import train_supervised
-from baselines.benchmark import Benchmarker
-from encoder_network import MulticlassEncoder, Encoder
+from experiments.benchmark import Benchmarker
+from encoder_network import MulticlassEncoder
 from end_to_end_ws_model import E2ETrainer
 from utils.data_loading import get_spouses_data, DownstreamSpouses
 from utils.prediction_and_evaluation import eval_final_predictions, get_majority_vote
@@ -24,7 +23,6 @@ def main(dirs, args, seeds, mode='all'):
     model_params, hyper_params = config["model_params"], config["hyper_params"]
     lstm_params = config['end_params']
     trainloader, valloader, testloader = get_spouses_data(batch_size=hyper_params['batch_size'])
-    set_shared_args(model_params, hyper_params, args)
     mode = mode.lower()
     set_gpu(args.gpu_id)
     class_balance = [0.9, 0.1]
@@ -44,11 +42,7 @@ def main(dirs, args, seeds, mode='all'):
                 'features': Xtrain, 'valloader': valloader, 'testloader': testloader,
                 'hyper_params': hyper_params, 'lstm_params': lstm_params
             }
-            # Validation supervised
-            #stats_sup = train_supervised(None, trainloader=valloader, dataset='spouses', testloader=testloader,
-            #                             hyper_params=hyper_params, mlp_params=lstm_params,
-            #                             model_dir=model_dir + f'supervised/{seed_id}')
-            #benchmark_stats[seed]['Supervised_Val'] = stats_sup
+
 
             # Majority Vote
             preds_MMVV = get_majority_vote(L_train, probs=True, abstention_policy='Stay', abstention=0)
@@ -84,46 +78,16 @@ def main(dirs, args, seeds, mode='all'):
                 benchmark_stats[seed][method] = tr_stats
 
         if mode in ['all', 'e2e']:
-            '''            for loss in ['MIG', 'CE', 'SquaredHellinger']:
-                hyper_params['EncoderLoss'] = loss
-                hyper_params['loss'] = loss
-                endmodel = LSTMModel(lstm_params)
-                encoder = MulticlassEncoder
-                trainer = E2ETrainer(model_params, downstream_model=endmodel, seed=seed, dirs=dirs, encoder_net=encoder)
-                valid_f1 = trainer.fit(trainloader, valloader, hyper_params, testloader=testloader)
-                _, _, end_stats = trainer.evaluate(testloader, prefix=f'E2E Test END {loss}:\n', verbose=True)
-                _, _, best_stats = trainer.evaluate(testloader, prefix=f'E2E Test BEST {loss}:\n',
-                                                    adjust_thresh=False, use_best_model=True, verbose=True)
-                best_stats[f'validation_val'] = valid_f1
-                benchmark_stats[seed][f'E2E{loss}'] = {"LSTM_best": best_stats, "LSTM_end": end_stats}
-            '''
-            for config_file in ['', '_temp2', '_temp3', '_temp4', '_temp5']:
-                ID = config_file
-                with open('configs_ablations/professor_teacher99' + config_file + '.json') as f:
-                    config = json.load(f)
-                encoder_paramsNEW, hyper_paramsNEW = config['model_params'], config['hyper_params']
-
-                hyper_params['loss'] = hyper_paramsNEW['loss']
-                hyper_params['EncoderLoss'] = hyper_paramsNEW['EncoderLoss']
-                hyper_params['optim'] = hyper_paramsNEW['optim']
-                # hyper_params['weight_decay'] = hyper_paramsNEW['weight_decay']
-                # hyper_params['mlp_weight_decay'] = hyper_paramsNEW['mlp_weight_decay']
-                model_params['use_features_for_enc'] = encoder_paramsNEW['use_features_for_enc']
-                model_params['accuracy_func'] = encoder_paramsNEW['accuracy_func']
-                model_params['accuracy_scaler'] = encoder_paramsNEW['accuracy_scaler']
-                # model_params['encoder_dims'] = encoder_paramsNEW['encoder_dims']
-                model_params['batch_norm'] = encoder_paramsNEW['batch_norm']
-                model_params['temperature'] = encoder_paramsNEW['temperature'] if 'temperature' in encoder_paramsNEW else 1
-                print('***' * 5, dirs['ID'], ID)
-                endmodel = LSTMModel(lstm_params)
-                encoder = MulticlassEncoder
-                trainer = E2ETrainer(model_params, downstream_model=endmodel, seed=seed, dirs=dirs, encoder_net=encoder)
-                valid_f1 = trainer.fit(trainloader, valloader, hyper_params, testloader=testloader)
-                _, _, end_stats = trainer.evaluate(testloader, prefix=f'E2E Test END {ID}:\n', verbose=True)
-                _, _, best_stats = trainer.evaluate(testloader, prefix=f'E2E Test BEST {ID}:\n',
-                                                    adjust_thresh=False, use_best_model=True, verbose=True)
-                best_stats[f'validation_val'] = valid_f1
-                benchmark_stats[seed][f'E2E-{ID}'] = {"LSTM_best": best_stats, "LSTM_end": end_stats}
+            print('***' * 5, dirs['ID'], ID)
+            endmodel = LSTMModel(lstm_params)
+            encoder = MulticlassEncoder
+            trainer = E2ETrainer(model_params, downstream_model=endmodel, seed=seed, dirs=dirs, encoder_net=encoder)
+            valid_f1 = trainer.fit(trainloader, valloader, hyper_params, testloader=testloader, use_wandb=False)
+            _, _, end_stats = trainer.evaluate(testloader, prefix=f'E2E Test END:\n', verbose=True)
+            _, _, best_stats = trainer.evaluate(testloader, prefix=f'E2E Test BEST:\n',
+                                                adjust_thresh=False, use_best_model=True, verbose=True)
+            best_stats[f'validation_val'] = valid_f1
+            benchmark_stats[seed][f'E2E'] = {"LSTM_best": best_stats, "LSTM_end": end_stats}
 
         with open(dirs['results'] + "benchmark" + ",".join([str(s) for s in seeds]) + '.pkl', 'wb') as f:
             pickle.dump(benchmark_stats, f, pickle.HIGHEST_PROTOCOL)
@@ -135,7 +99,7 @@ def train_lstm_with_soft_labels(softlabels, features, hyper_params, valloader, t
     traindata = DownstreamSpouses(Y=softlabels, features=features, filter_uncertains=True, uncertain=0.5)
     lstm = LSTM_Trainer(lstm_params, model_dir=model_dir)
     best_valid = lstm.fit(traindata, hyper_params=hyper_params, valloader=valloader, testloader=testloader,
-                          device="cuda")
+                          device="cuda", use_wandb=False)
     _, _, end_stats = lstm.evaluate(testloader, device="cuda", print_prefix=f'{prefix} LSTM END:\n',
                                     adjust_thresh=False, use_best_model=False)
     _, _, best_stats = lstm.evaluate(testloader, device="cuda", print_prefix=f'{prefix} LSTM BEST:\n',
@@ -144,26 +108,9 @@ def train_lstm_with_soft_labels(softlabels, features, hyper_params, valloader, t
     stats = {"LSTM_best": best_stats, 'LSTM_end': end_stats}
     return stats
 
-
-def set_shared_args(encoder_params, hyper_params, args):
-    set_args(args.adjust_thresh, hyper_params, bool, "adjust_thresh")
-    set_args(args.valset_size, hyper_params, int, "valset_size")
-    set_args(args.val_metric, hyper_params, str, "val_metric")
-    # set_args(args.batch_size, hyper_params, int, "batch_size")
-    set_args(args.scheduler, hyper_params, str, "scheduler")
-    # set_args(args.epochs, hyper_params, int, "epochs")
-
-    set_args(args.accuracy_scaler, encoder_params, [float, str], "accuracy_scaler")
-    set_args(args.use_features_for_enc, encoder_params, bool, "use_features_for_enc")
-    set_args(args.accuracy_func, encoder_params, str, "accuracy_func")
-    set_args(args.batch_norm, encoder_params, bool, "batch_norm")
-    set_args(args.num_LFs, encoder_params, int, "num_LFs")
-    hyper_params['notebook_mode'] = False
-
-
 if __name__ == '__main__':
-    mode = ID = 'e2e'
-    ID = '300x50_0.5doutE_1e-4wd_1e-4lr_75eps'
+    mode = ID = 'all'
+    ID = ''
     setup_and_get_params('Spouses', prefix=mode, num_LFs=None, notebook_mode=False, reload_mode=True)
     parser = get_argparser()
     args = parser.parse_args()

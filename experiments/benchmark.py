@@ -83,8 +83,9 @@ class Benchmarker:
                 'reinit': True
             }
 
+            run = wandb.init(**wandb_init_dict, group='Fully Supervised')
             fully_sup_trainset = DownstreamDP(Xtrain, Ytrain, categorical=end_params['out_dim'] > 1)
-            stats_sup = train_supervised(train_data=fully_sup_trainset, dataset=self.dataset,
+            stats_sup = train_supervised(train_data=fully_sup_trainset, dataset=self.dataset, wandb_run=run,
                                          valloader=end_valloader, testloader=end_testloader, hyper_params=hyper_params,
                                          mlp_params=end_params, model_dir=self.model_dir + f'supervised/{seed_id}')
             benchmark_stats[seed]['Supervised'] = stats_sup
