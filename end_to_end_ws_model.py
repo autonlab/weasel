@@ -275,7 +275,6 @@ class E2ETrainer:
         """
         self.model.train()
         n_certains = 0
-        accs = predsE = predsF = None
         epoch_loss, enc_loss, end_loss = 0.0, 0.0, 0.0
 
         # Cycle through batches
@@ -291,10 +290,6 @@ class E2ETrainer:
             ylogits, label_logits, certains, accuracies1 = self.model.forward(
                 lf_votes_tensor, batch_features, return_certain_mask=True, device=device
             )
-            if accuracies1 is not None:
-                accs = accuracies1.mean(dim=0) if accs is None else accuracies1.mean(dim=0) + accs
-            predsE = label_logits.mean(dim=0) if predsE is None else label_logits.mean(dim=0) + predsE
-            predsF = ylogits.mean(dim=0) if predsF is None else ylogits.mean(dim=0) + predsF
             # mask samples out where all LFs abstained with [certains]
             if single_loss:
                 loss = criterion(ylogits[certains], label_logits[certains])
@@ -389,6 +384,7 @@ class E2ETrainer:
                     train_loader, encoder_optimizer, end_optimizer,
                     loss_endmodel,loss_enc, epoch, single_loss=is_single_loss
                 )
+                print('DOne')
                 logging_dict = {'Train loss e': e_loss, 'Train loss f': f_loss, 'epoch': epoch}
                 if writer is not None:
                     writer.add_scalar(f'train/_loss', loss, epoch)
