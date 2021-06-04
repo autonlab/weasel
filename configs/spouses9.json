@@ -1,0 +1,51 @@
+{
+    "gpu": {
+        "use": true,
+        "id": 0
+    },
+    
+    "model_name": "E2E",
+    "dataset": "Spouses",
+
+    "out_dir": "out/Spouses/",
+
+    "hyper_params": {
+        "seed": 3,
+        "epochs": 75,
+        "batch_size": 64,
+        "lr": 1e-4,
+        "weight_decay": 1e-4,
+        "mlp_weight_decay": 1e-4,
+        "notebook_mode": false,
+        "loss": "CE",
+        "EncoderLoss": "CE",
+        "optim": "adam",
+        "scheduler": "No",
+        "adjust_thresh": true,
+        "val_metric": "AUC"
+    },
+   "model_params": {
+        "num_LFs": 9,
+        "dropout": 0.3,
+        "batch_norm": true,
+        "neg_label": 0,
+        "abstention": -1,
+        "n_features": 1440,
+        "use_features_for_enc": true,
+        "encoder_dims": [50, 5],
+        "class_balance": [0.9, 0.1],
+        "accuracy_func": "softmax",
+        "accuracy_scaler": "sqrt",
+        "temperature": 3.0
+    },
+
+    "end_params": {
+        "L": 2,
+        "dropout": 0.0,
+        "input_dim": 300,
+        "hidden_dim": 50,
+        "out_dim": 2,
+        "out_func": "sigmoid"
+    }
+
+}

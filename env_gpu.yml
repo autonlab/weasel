@@ -1,0 +1,25 @@
+name: E2E
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - cudatoolkit
+  - cython=0.29.21
+  - numpy=1.19.2
+  - numpy-base=1.19.2
+  - pip=20.3.3
+  - python=3.7
+  - pytorch=1.7.1
+  - qtpy=1.9.0
+  - setuptools=51.3.3
+  - pip:
+    - pgmpy
+    - scikit-learn==0.21.3
+    - snorkel==0.9.6
+    - flyingsquid
+    - tensorboard==1.15.0
+    - torchsummary==1.5.1
+    - torchtext
+    - tqdm==4.56.0
+    - wandb

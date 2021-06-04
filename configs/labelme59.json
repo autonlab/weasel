@@ -1,0 +1,54 @@
+{
+    "gpu": {
+        "use": true,
+        "id": 0
+    },
+    
+    "model_name": "E2E",
+    "dataset": "LabelMe",
+
+    "out_dir": "out/LabelMe/",
+
+    "hyper_params": {
+        "seed": 3,
+        "epochs": 25,
+        "batch_size": 64,
+        "lr": 1e-4,
+        "weight_decay": 7e-7,
+        "mlp_weight_decay": 7e-7,
+        "valset_size": 200,
+        "loss": "Max-MIG",
+        "EncoderLoss": "Max-MIG",
+        "optim": "Adam",
+        "scheduler": "No",
+        "class_conditional": true,
+        "adjust_thresh": false,
+        "val_metric": "accuracy"
+    },
+
+    "model_params": {
+        "num_LFs": 59,
+        "dropout": 0.5,
+        "batch_norm": true,
+        "cardinality": 8,
+        "neg_label": 0,
+        "abstention": -1,
+        "n_features": 8192,
+        "use_features_for_enc": true,
+        "encoder_dims":  [70, 70],
+        "class_balance": [0.125, 0.125, 0.125, 0.125, 0.125, 0.125,0.125, 0.125],
+        "accuracy_func": "softmax",
+        "label_func": "sigmoid",
+        "accuracy_scaler": "sqrt"
+    },
+
+    "end_params": {
+        "L": 1,
+        "dropout": 0.5,
+        "input_dim": 8192,
+        "hidden_dim": 100,
+        "out_dim": 8,
+        "out_func": "softmax"
+    }
+
+}

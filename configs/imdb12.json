@@ -1,0 +1,52 @@
+{
+    "gpu": {
+        "use": true,
+        "id": 0
+    },
+    
+    "model_name": "E2E",
+    "dataset": "IMDB-12LFs",
+
+    "out_dir": "out/IMDB/",
+
+    "hyper_params": {
+        "seed": 3,
+        "epochs": 150,
+        "batch_size": 64,
+        "lr": 1e-4,
+        "weight_decay": 7e-7,
+        "mlp_weight_decay": 7e-7,
+        "valset_size": 250,
+        "loss": "BCE",
+        "EncoderLoss": "BCE",
+        "optim": "Adam",
+        "scheduler": "No",
+        "adjust_thresh": true,
+        "val_metric": "AUC"
+    },
+
+    "model_params": {
+        "num_LFs": 12,
+        "dropout": 0.3,
+        "batch_norm": true,
+        "neg_label": 0,
+        "abstention": -1,
+        "n_features": 300,
+        "use_features_for_enc": true,
+        "encoder_dims": [70, 70],
+        "class_balance": [0.5, 0.5],
+        "accuracy_func": "softmax",
+        "label_func": "sigmoid",
+        "accuracy_scaler": "sqrt"
+    },
+
+    "end_params": {
+        "L": 2,
+        "dropout": 0.3,
+        "input_dim": 300,
+        "hidden_dim": 50,
+        "out_dim": 2,
+        "out_func": "sigmoid"
+    }
+
+}
