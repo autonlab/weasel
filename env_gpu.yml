@@ -1,0 +1,21 @@
+name: weasel
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - python>=3.7
+  - pip:
+    - pytorch-lightning>=1.3.2
+    - wandb>=0.10.30
+    - hydra-core>=1.1.0
+    - scikit-learn
+    - ipython
+    - ipykernel
+    - jupyter
+    - matplotlib
+    - seaborn
+    - pyyaml
+    - rich
+

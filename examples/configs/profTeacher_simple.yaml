@@ -1,0 +1,73 @@
+# @package _global_
+
+# to execute this experiment run:
+# examples/1_bias_bios.ipynb
+
+seed: 3
+
+datamodule:
+  _target_: examples.datamodules.ProfTeacher_datamodule.ProfTeacher_DataModule
+  # The following three params are ignored by the data_module, but semantically are tied to the dataset,
+  # which is why they are included here. In practice though, only Weasel needs to know them, see below in the Weasel params
+  # where they are all automatically inferred from these params in datamodule.
+  num_LFs: 99
+  n_classes: 2
+  class_balance: [0.5, 0.5]
+  # Actual params used by DataModule
+  batch_size: 64
+  val_test_split: [250, -1]
+  seed: 3
+
+trainer:
+  _target_: pytorch_lightning.Trainer
+  gpus: 0  # set to 0 to train on CPU, and >= 1 for GPU(s)
+  max_epochs: 100
+  # resume_from_checkpoint: ${work_dir}/last.ckpt
+
+end_model:
+  _target_: weasel.models.downstream_models.MLP.MLPNet
+  dropout: 0.3
+  net_norm: "none"
+  activation_func: "ReLU"
+  input_dim: 300
+  hidden_dims: [50, 50, 25]
+  output_dim: ${datamodule.n_classes}
+  adjust_thresh: True
+
+
+Weasel:
+  _target_: weasel.models.weasel.Weasel
+  # very convenient interpolation by Hydra/OmegaConf that infers params from the dataset details
+  num_LFs: ${datamodule.num_LFs}
+  n_classes: ${datamodule.n_classes}
+  class_balance: ${datamodule.class_balance}
+
+  loss_function: "cross_entropy"
+
+  temperature: 2.0
+  accuracy_scaler: "sqrt"
+
+  use_aux_input_for_encoder: True
+  class_conditional_accuracies: True
+
+  encoder:
+    _target_: weasel.models.encoder_models.encoder_MLP.MLPEncoder
+    # example_extra_input: [1, 300] # OR (1, ${end_model.input_dim})
+    #  |--> Commented out, since it is better to specify the 'example_input_array' attribute in your end-model
+    dropout: 0.3
+    net_norm: "batch_norm"
+    activation_func: "ReLU"
+    hidden_dims: [70, 70]
+
+  optim_end_model:
+    _target_: torch.optim.Adam
+    lr: 1e-4
+    weight_decay: 7e-7
+  optim_encoder:
+    _target_: torch.optim.Adam
+    lr: 1e-4
+    weight_decay: 7e-7
+  scheduler: null
+
+  verbose: True
+

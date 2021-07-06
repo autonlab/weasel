@@ -1,0 +1,60 @@
+# @package _global_
+
+# to execute this experiment run that only requires PyTorch Lightning:
+#    examples/1_bias_bios_no_hydra.ipynb
+
+seed: 3
+
+datamodule:
+  batch_size: 64
+  val_test_split: [250, -1]
+  seed: 3
+
+trainer:
+  gpus: 0  # set to 0 to train on CPU, and >= 1 for GPU(s)
+  max_epochs: 100
+  # resume_from_checkpoint: ${work_dir}/last.ckpt
+
+end_model:
+  dropout: 0.3
+  net_norm: "none"
+  activation_func: "ReLU"
+  input_dim: 300
+  hidden_dims: [50, 50, 25]
+  output_dim: 2  # 2 classes
+  adjust_thresh: True
+
+
+Weasel:
+   # very convenient interpolation by Hydra/OmegaConf that infers params from the dataset details
+  num_LFs: 99
+  n_classes: 2
+  class_balance: [0.5, 0.5]
+  loss_function: "cross_entropy"
+
+  temperature: 2.0
+  accuracy_scaler: "sqrt"
+
+  use_aux_input_for_encoder: True
+  class_conditional_accuracies: True
+
+  encoder:
+    # example_extra_input: [1, 300] # OR (1, ${end_model.input_dim})
+    #  |--> Commented out, since it is better to specify the 'example_input_array' attribute in your end-model
+    dropout: 0.3
+    net_norm: "batch_norm"
+    activation_func: "ReLU"
+    hidden_dims: [70, 70]
+
+  optim_end_model:
+    name: "Adam"
+    lr: 1e-4
+    weight_decay: 7e-7
+
+  optim_encoder:
+    name: "Adam"
+    lr: 1e-4
+    weight_decay: 7e-7
+
+  scheduler: null
+
