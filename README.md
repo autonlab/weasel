@@ -14,7 +14,7 @@
 <a href="https://hydra.cc/"><img alt="Config: hydra" src="https://img.shields.io/badge/config-hydra-89b8cd?style=for-the-badge&labelColor=gray"></a>
 [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-This is a PyTorch-Lightning-based framework, based on our *End-to-End Weak Supervision* paper,
+This is a PyTorch-Lightning-based framework, based on our [*End-to-End Weak Supervision* paper](https://arxiv.org/abs/2107.02233),
 that allows you to **train your favorite neural network for weakly-supervised classification**<sup>1</sup>
 </div>
 
@@ -106,19 +106,20 @@ Please have a look at the detailed instructions in [this Readme](weasel/models/d
 Please have a look at the detailed instructions in [this Readme](weasel/datamodules/README.md).
 
 # Citation & Credits
-<details><p>
+<details>
     <summary><b> Citation</b></summary>
-    <br>
-    The paper is currently under review, the preprint reference is:
+    The <a href="https://arxiv.org/abs/2107.02233">paper</a> is currently under review, its preprint reference is:
     
-    @article{cachayE2E,
+    @article{cachay2021endtoend,
       title={End-to-End Weak Supervision},
-      author={Rühling Cachay, Salva and Boecking, Benedikt and Dubrawski, Artur},
-      year={2021}
+      author={Salva Rühling Cachay and Benedikt Boecking and Artur Dubrawski},
+      year={2021},
+      eprint={2107.02233},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
     }
-    
 
-</p></details>
+</details>
 
 <details><p>
     <summary><b> Credits</b></summary>
