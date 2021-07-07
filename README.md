@@ -1,6 +1,6 @@
 # End-to-End Weak Supervision
 
-This is the source code supporting the *End-to-End Weak Supervision* paper under review at NeurIPS 2021.
+This is the source code supporting our [*End-to-End Weak Supervision* paper](https://arxiv.org/abs/2107.02233).
 Our core encoder network is implemented [here](encoder_network.py), while the whole end-to-end model 
  can be found [here](end_to_end_ws_model.py).
 
