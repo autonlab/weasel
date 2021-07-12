@@ -18,6 +18,10 @@ The smallest dataset, Bias in Bios is already included in [the data subdirectory
 All the rest can be downloaded from this [Google drive link](https://drive.google.com/drive/folders/1v7IzA3Ab5zDEsRpLBWmJnXo5841tSOlh?usp=sharing).
 Please put the downloaded data into the [data/](data) directory.
 
+More information on the used Amazon, BiasBios, IMDB datasets can be found at this repository: https://github.com/benbo/interactive-weak-supervision/tree/main/datasets
+.
+
+For more details on the LFs, e.g. their definitions and creation, please do not hesitate in contacting us.
 ## Reproducibility
 
 ### Main Benchmark and Crowdsourcing
