@@ -3,7 +3,6 @@ from typing import Union, Any, Tuple
 import torch
 import numpy as np
 from torch.utils.data import DataLoader
-from weasel.utils.prediction_and_evaluation import to_categorical
 
 
 class AbstractWeaselDataset(torch.utils.data.Dataset):
