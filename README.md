@@ -21,12 +21,13 @@ that allows you to **train your favorite neural network for weakly-supervised cl
 - only with multiple labeling functions (LFs)<sup>2</sup>, i.e. *without any labeled training data*!
 - in an *end-to-end* manner, i.e. directly train and evaluate your neural net (*end-model* from here on),
  there's no need to train a separate label model any more as in Snorkel & co,
-- with *better test set performance and enhanced robustness* against correlated or inaccurate LFs then 
+- with *better test set performance and enhanced robustness* against correlated or inaccurate LFs than 
 prior methods like Snorkel
 
 <sup>1</sup> This includes learning from *crowdsourced labels* or annotations!
 <br>
-<sup>2</sup> LFs are labeling heuristics, that output noisy labels for (subsets of) the training data.
+<sup>2</sup> LFs are labeling heuristics, that output noisy labels for (subsets of) the training data
+ (e.g. crowdworkers or keyword detectors).
 
     
 # Getting Started
