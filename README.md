@@ -14,7 +14,8 @@
 <a href="https://hydra.cc/"><img alt="Config: hydra" src="https://img.shields.io/badge/config-hydra-89b8cd?style=for-the-badge&labelColor=gray"></a>
 [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-This is a PyTorch-Lightning-based framework, based on our [*End-to-End Weak Supervision* paper](https://arxiv.org/abs/2107.02233),
+This is a PyTorch-Lightning-based framework, based on our 
+[*End-to-End Weak Supervision* paper](https://arxiv.org/abs/2107.02233) (NeurIPS 2021),
 that allows you to **train your favorite neural network for weakly-supervised classification**<sup>1</sup>
 </div>
 
@@ -29,7 +30,17 @@ prior methods like Snorkel
 <sup>2</sup> LFs are labeling heuristics, that output noisy labels for (subsets of) the training data
  (e.g. crowdworkers or keyword detectors).
 
-    
+
+<details><p>
+    <summary><b> Credits</b></summary>
+
+- The following template was extremely useful as source of inspiration and for getting started with the PL+Hydra implementation:
+[ashleve/lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template)
+
+- [Weasel image](weasel.jpg) credits go to [Rohan Chang for this](https://unsplash.com/photos/hn0AtxarNNw) Unsplash-licensed image
+
+</p></details>
+
 # Getting Started
 This library assumes familiarity with (multi-source) weak supervision, if that's not the case you may want to first
 learn its basics in e.g. [this overview slides from Stanford](http://cs229.stanford.edu/notes2019fall/weak_supervision_slides.pdf) or [this Snorkel tutorial](https://www.snorkel.org/use-cases/01-spam-tutorial).
@@ -106,29 +117,12 @@ Please have a look at the detailed instructions in [this Readme](weasel/models/d
 ### Using your own dataset and/or labeling heuristics
 Please have a look at the detailed instructions in [this Readme](weasel/datamodules/README.md).
 
-# Citation & Credits
-<details>
-    <summary><b> Citation</b></summary>
-    The <a href="https://arxiv.org/abs/2107.02233">paper</a> is currently under review, its preprint reference is:
-    
+# Citation
+
     @article{cachay2021endtoend,
+      author={R{\"u}hling Cachay, Salva and Boecking, Benedikt and Dubrawski, Artur},
+      journal={Advances in Neural Information Processing Systems}, 
       title={End-to-End Weak Supervision},
-      author={Salva Rühling Cachay and Benedikt Boecking and Artur Dubrawski},
-      year={2021},
-      eprint={2107.02233},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+      year={2021}
     }
-
-</details>
-
-<details><p>
-    <summary><b> Credits</b></summary>
-
-- The following template was extremely useful as source of inspiration and for getting started with the PL+Hydra implementation:
-[ashleve/lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template)
-
-- [Weasel image](weasel.jpg) credits go to [Rohan Chang for this](https://unsplash.com/photos/hn0AtxarNNw) Unsplash-licensed image
-
-</p></details>
 
