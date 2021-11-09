@@ -14,7 +14,7 @@ extras["all"] = [
     "seaborn",
     "rich"
 ]
-keywords = ["weak supervision", "data programming", "deep learning", "pytorch", "pytorch lightning", "hydra", "CMU"]
+keywords = ["weak supervision", "data programming", "deep learning", "pytorch", "pytorch lightning", "weasel", "hydra", "CMU"]
 
 setup(
     name='weasel',
@@ -22,7 +22,7 @@ setup(
     packages=find_packages(
         exclude=["tests", "*.tests", "*.tests.*", "tests.*"]
     ),
-    url='https://github.com/salvaRC/weasel',
+    url='https://github.com/autonlab/weasel',
     license='Apache 2.0',
     author='Salva Rühling Cachay',
     author_email='salvaruehling@gmail.com',

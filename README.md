@@ -73,14 +73,14 @@ Please have a look at the research code branch, which operates on pure PyTorch.
 <details>
 <summary><b> 2a: From source</b></summary>
 
-    python -m pip install git+https://github.com/salvaRC/weasel#egg=weasel[all]
+    python -m pip install git+https://github.com/autonlab/weasel#egg=weasel[all]
 
 </details>
 
 <details>
 <summary><b> 2b: From source, <a href="https://huggingface.co/transformers/installation.html#editable-install">editable install</a></b></summary>
 
-    git clone https://github.com/salvaRC/weasel.git
+    git clone https://github.com/autonlab/weasel.git
     cd weasel
     pip install -e .[all]
 
@@ -93,7 +93,7 @@ Please have a look at the research code branch, which operates on pure PyTorch.
 Minimal dependencies, in particular not using [Hydra](https://hydra.cc), can be installed
 with
 
-    python -m pip install git+https://github.com/salvaRC/weasel
+    python -m pip install git+https://github.com/autonlab/weasel
 
 The needed environment corresponds to ``conda env create -f env_gpu_minimal.yml``.
 
