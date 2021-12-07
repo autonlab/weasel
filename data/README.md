@@ -1,3 +1,5 @@
+# Processed weak supervision data
+
 The smallest dataset, Bias in Bios is already included here in the source code/repository.
 All the rest can be downloaded from this [Google drive link](https://drive.google.com/drive/folders/1v7IzA3Ab5zDEsRpLBWmJnXo5841tSOlh?usp=sharing).
 Just replace this directory with the downloaded data/ directory (or move its files to this one).
@@ -26,6 +28,27 @@ and left as-is, if you use it, please cite as below.
 
 The LabelMe data was downloaded from [this link](http://fprodrigues.com//deep_LabelMe.tar.gz) (will start downloading directly).
 and left as-is, if you use it, please cite as below.
+
+# Raw labeling function definitions
+The LF sets that we newly introduce for BiasBios (bb), Amazon and IMDB (136 LFs) are all uni- or bigram keyword detector functions.
+Their definitions can be found in the respective *lfs_to_use_<dataset_name>.txt* file in this data/ subdir.
+The LF polarity (whether it fires for positive or negative label) is separated alphabetically, i.e. after the last bigram the other polarity starts, e.g. for IMDB:
+    
+    worth watching 19236 --> positive polarity ends
+    amateurish 19875  --> negative polarity starts
+
+To attain the *label matrix* based on these LF definitions, you can either 1) parse the raw data, or 2) index cell [6] in https://github.com/benbo/interactive-weak-supervision/blob/main/IWS.ipynb based on the indices of the LFs (second column in the attached files), where cell [6] is:
+    
+    LFs, lf_descriptions = generate_ngram_LFs(corpus,'unigram')
+
+For 2), you can get the indices as follows:
+
+    with open('lfs_to_use_imdb.txt', 'r') as f:
+        lfs = [line.split() for line in f.readlines()]
+
+    lf_idxs = np.array([int(lf[-1]) for lf in lfs])
+If you do 2), as a sanity check you can compare whether indexing the corresponding lf_descriptions is consistent with the firsst column of the *lfs_to_use* files.
+
 
 # References
 
