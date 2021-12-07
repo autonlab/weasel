@@ -1,0 +1,136 @@
+absorbed 219
+absorbing 220
+admire 333
+adorable 348
+adore 349
+amazing 523
+applauded 665 
+artistic 759
+artwork 765
+awesome 918
+beautiful 1064
+best 1148
+brilliant 1438
+engaging 3655
+enjoy 3668
+enjoyable 3669
+enjoyed 3671
+excellent 3833
+excellently 3834 
+fabulous 3970
+fantastic 4033
+great 4781
+greatest 4783
+original 7479
+recommend 8599 
+special 9950 
+spectacular 9960
+worth 11769
+absolutely brilliant 11945
+absolutely hilarious 11946
+absolutely loved 11949
+absolutely perfect 11953
+absolutely stunning 11954
+awesome movie 12227
+beautiful film 12318
+beautiful movie 12320
+beautiful scenery 12321
+beautiful story 12322
+beautifully filmed 12326
+beautifully shot 12328
+definitely recommend 12962 
+definitely worth 12964
+especially liked 13384
+especially love 13385
+fantastic film 13499
+fantastic job 13500
+great acting 14333
+great entertainment 14349
+highly entertaining 14560
+highly recommend 14561
+oscar worthy 16965
+never bored 16241
+never boring 16242
+never dull 16248
+strongly recommend 18258
+worth watch 19235
+worth watching 19236
+amateurish 19875
+annoyed 19961
+annoying 19962
+appalling 20007
+appallingly 20008 
+atrocious 20187
+awful 20276
+awfully 20277
+awkward 20280
+bored 20691
+boredom 20692 
+bad 20310
+badly 20313
+boring 20694
+disgusted 22523
+disgusting 22524
+dreadful 22689 
+horrendous 24591
+horrendously 24592
+horrible 24593
+horrid 24595
+horrific 24596
+horrified 24597
+terrible 30019
+terribly 30020
+unoriginal 30566
+absolute worst 31300
+absolutely awful 31301
+absolutely horrible 31304 
+absolutely terrible 31312
+bad writing 31648
+badly acted 31649
+badly written 31650 
+cant recommend 31934
+definitely worst 32320
+dont recommend 32569
+dont waste 32580
+extremely boring 32789
+got bored 33669
+got worse 33681
+hard follow 33821
+hard understand 33833
+hate film 33841
+honestly cant 33943
+honestly dont 33944
+horrible movie 33954 
+huge disappointment 33979
+ill conceived 34019
+im disappointed 34032
+incredibly bad 34064 
+incredibly stupid 34065
+isnt funny 34109
+isnt good 34111
+isnt great 34112 
+isnt worth 34120
+just average 34218
+just cannot 34228
+just terrible 34322
+not enjoy 35839 
+not recommend 35947
+not recommended 35948
+not special 35963
+not original 35927
+not worth 36006
+nothing funny 36013
+nothing good 36015
+nothing great 36016
+nothing interesting 36019
+nothing original 36027
+nothing recommend 36030
+nothing special 36034
+nothing worth 36037 
+truly bad 38120
+wasnt good 38354
+wasnt great 38355 
+wasnt worth 38363
+waste money 38366
+wasted time 38368 
+wasnt funny 38352

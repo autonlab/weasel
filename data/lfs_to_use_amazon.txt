@@ -1,0 +1,175 @@
+accurate 415
+adequate 497
+admirable 514
+adorable 531
+adore 532
+adored 533
+adores 534
+aesthetic 568
+affordable 582
+amazed 724
+amazes 725
+amazing 726
+amazingly 727
+awesome 1178
+beautiful 1360
+best 1445
+comfortable 2685
+eclectic 4370
+effective 4406
+efficient 4411
+effortless 4414
+elegant 4449
+enamored 4533
+enchanted 4534
+enchanting 4535
+endured 4564
+enduring 4565
+engrossing 4586
+enhances 4589
+enjoyable 4592
+enjoyed 4593
+everlasting 4741
+excelente 4784
+excellant 4785
+excellence 4786
+excellent 4787
+excellently 4788
+exceptional 4791
+exceptionally 4792
+exciting 4805
+exquisite 4906
+fantastic 5007
+favorite 5051
+great 5908
+like 7673
+likeable 7674
+liked 7675
+love 7851
+loveable 7852
+loved 7853
+lovely 7854
+perfect 9445
+perfection 9446
+perfectly 9447
+worth 14588
+worthy 14591
+absolute favorite 14888
+absolutely adorable 14893
+absolutely beautiful 14896
+absolutely best 14897
+absolutely loved 14905
+absolutely recommend 14912
+annoying not 15135
+comfortable not 48813
+definitely recommend 17759
+especially like 18631
+especially liked 18632
+especially love 18633
+especially loved 18634
+junk no 21234
+junk not 21235
+liked lot 22188
+not disappointed 24076
+not exaggerating 24103
+not expensive 24109
+nothing bad 24579
+really liked 26732
+recommend 10534
+recommend anybody 26869
+recommend highly 26884
+too bad 29518
+totally recommend 29670
+wasnt disappointed 30449
+wasnt expensive 30452
+absurd 31830
+absurdity 31831
+absurdly 31832
+abuses 31838
+abusing 31839
+abusive 31840
+abysmal 31841
+agonizing 32085
+annoyance 32287
+annoyed 32288
+annoying 32289
+awful 32652
+bad 32691
+crap 34665
+crappy 34667
+dislike 35436
+disliked 35437
+dismal 35439
+displeasure 35456
+disrespectful 35463
+dissapointed 35464
+dissapointing 35465
+dissapointment 35466
+dissappointed 35467
+dissatisfied 35468
+disservice 35469
+disturbed 35497
+disturbing 35498
+dreadful 35659
+dysfunctional 35790
+exaggerated 36237
+exaggerating 36238
+exaggeration 36239
+exhausted 36293
+exhausting 36294
+exhaustive 36295
+expensive 36323
+garbage 37102
+inadequate 38139
+junk 38724
+lacked 38888
+lacks 38891
+terrible 44603
+unusable 45379
+useless 45430
+waste 45757
+wasted 45758
+absolute crap 46358
+absolute garbage 46360
+absolute junk 46361
+absolute waste 46362
+absolute worst 46363
+absolutely hated 46373
+absolutely horrible 46374
+absolutely terrible 46385
+absolutely useless 46386
+accurate not 46397
+cannot recommend 48269
+cant recommend 48315
+cheap garbage 48579
+cheap junk 48581
+cheap quality 48600
+complete crap 48854
+complete disappointment 48855
+complete garbage 48856
+complete junk 48857
+completely different 48865
+completely disappointed 48866
+completely unusable 48876
+completely useless 48877
+dont recommend 49796
+extremely annoying 50254
+isnt worth 52560
+liked better 53651
+liked not 53661
+never liked 54977
+not accurate 55415
+not recommend 55860
+not worth 56038
+nothing great 56063
+really annoying 58128
+total crap 61129
+total disappointment 61130
+total garbage 61131
+total junk 61132
+totally unacceptable 61142
+totally useless 61144
+wasnt great 61927
+wasnt worth 61939
+wouldnt buy 62660
+wouldnt recommend 62670

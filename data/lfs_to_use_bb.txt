@@ -1,0 +1,99 @@
+dean 742
+dissertation 838
+engineer 969
+engineering 970
+faculty 1077
+fundamental 1182
+funded 1183
+funding 1184
+funds 1185
+lecture 1595
+lecturer 1597
+ph 2046
+phd 2050
+postgraduate 2115
+professor 2181
+publication 2215
+renowned 2310
+reputation 2321
+research 2322
+researched 2323
+researcher 2324
+researches 2326
+researching 2327
+scientist 2417
+scientists 2418
+universities 2831
+university 2832
+universitys 2833
+areas interest 3013
+best paper 3048
+big data 3049
+biomedical engineering 3050
+board member 3053
+book award 3054
+book chapters 3055
+book manuscript 3056
+california berkeley 3067
+california davis 3068
+california san 3069
+california santa 3070
+california state 3071
+graduate courses 3270
+graduate school 3272
+paper award 3456
+peer reviewed 3463
+post doctoral 3485
+primary research 3497
+science research 3632
+teaches courses 3702
+teaches graduate 3704
+teaches undergraduate 3705
+teaching research 3715
+teaching university 3717
+university teaching 3804
+children 4356
+choir 4361
+classroom 4383
+classrooms 4384
+coach 4396
+coached 4397
+coaches 4398
+curricula 4587
+curriculum 4588
+english 4843
+instruction 5305
+instructional 5306
+instructor 5307
+lesson 5476
+lessons 5477
+parenting 5854
+parents 5855
+pedagogical 5888
+pedagogy 5889
+preparation 5999
+preschool 6003
+primary 6023
+reading 6130
+school 6281
+schooling 6282
+science 6284
+secondary 6295
+subject 6492
+subjects 6493
+teach 6548
+teacher 6549
+teachers 6550
+teaches 6551
+teaching 6552
+tutor 6672
+tutoring 6673
+youth 6836
+arts education 6892
+graduate university 7147
+graduated university 7148
+primary school 7368
+school university 7496
+science teacher 7503
+science teaching 7504
+university completed 7631
