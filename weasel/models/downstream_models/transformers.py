@@ -23,14 +23,4 @@ class Transformers(DownstreamBaseModel):
         return model_output["logits"]
 
     def get_encoder_features(self, X: Dict, *args, **kwargs) -> Any:
-        """
-        This method returns features that will be used by Weasel's encoder network when Weasel.use_aux_input_for_encoder is True.
-        Usually, they can just be the same features X, though they may (need to) be processed by the network or manually.
-
-        args:
-            X (Any): the same features that are provided to the main model in self.forward(.)
-        Returns:
-            Anything that is usable by the encoder network (usually just the same features/a tensor)
-                as auxiliary input, besides the label matrix. E.g. a (n, d) tensor for a default MLP encoder.
-        """
         return X["input_ids"]
