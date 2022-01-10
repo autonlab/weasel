@@ -7,6 +7,7 @@ Specifically, you can find
 - A Multi-layer Perceptron ([MLP](MLP.py), or feed-forward network)
 - A (pre-trained) [ResNet](ResNet.py) and [VGG](VGG.py) for vision/image tasks
 - A [LSTM](LSTM.py) for sequential tasks
+- [Transformers](transformers.py) (from huggingface). This support is thanks to the Rubrix team, who provide a nice [guide](https://rubrix.readthedocs.io/en/stable/guides/weak-supervision.html#Joint-Model-with-Weasel) on how to use transformers as WeaSEL end-model.
 
 You simply need to instantiate it & pass it to Weasel. Given data, you're then ready to go
 to train/fit your downstream model based on the labeling function votes/outputs:
