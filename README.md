@@ -31,6 +31,13 @@ prior methods like Snorkel
  (e.g. crowdworkers or keyword detectors).
 
 
+If you use this code, please consider citing our work
+> [End-to-End Weak Supervision](https://arxiv.org/abs/2107.02233)\
+Salva Rühling Cachay, Benedikt Boecking, and Artur Dubrawski\
+Advances in Neural Information Processing Systems ([NeurIPS](https://proceedings.neurips.cc/paper/2021/hash/0e674a918ebca3f78bfe02e2f387689d-Abstract.html)), 2021\
+arXiv:2107.02233v3
+
+
 <details><p>
     <summary><b> Credits</b></summary>
 
