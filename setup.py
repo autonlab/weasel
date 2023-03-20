@@ -34,7 +34,7 @@ setup(
     python_requires=">=3.7.0",
     install_requires=[
         "torch>=1.7.1",
-        "pytorch-lightning>=1.3.2",
+        'pytorch-lightning==1.7.7',
         "scikit-learn",
         "pyyaml"
     ],
