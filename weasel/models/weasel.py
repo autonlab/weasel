@@ -181,6 +181,12 @@ class Weasel(LightningModule):
             if class_conditional_accuracies:
                 self.acc_scaler *= n_classes
 
+    def on_fit_start(self) -> None:
+        self.end_model.trainer = None  # so that the end-model doesn't try to log anything if wrapper around by Weasel
+
+    def on_test_start(self) -> None:
+        self.end_model.trainer = None  # so that the end-model doesn't try to log anything if wrapper around by Weasel
+
     def forward(self, X: Any):
         return self.end_model(X)
 
@@ -303,16 +309,11 @@ class Weasel(LightningModule):
             self.log("Train/loss_endmodel", loss, on_step=False, on_epoch=True, prog_bar=False)
 
         # we can return here dict with any tensors
-        # and then read it in some callback or in training_epoch_end() below
+        # and then read it in some callback or in on_training_epoch_end()
         # remember to always return loss from training_step, or else backpropagation will fail!
         # return {"loss": loss, "preds_enc": logits_encoder, "targets": targets}
 
         return loss
-
-    def training_epoch_end(self, outputs: List[Any]):
-        # `outputs` is a list of dicts returned from `training_step()`
-        pass
-
     # -------------------------------------------------------------------- Evaluation is on the downstream model simply!
     def validation_step(self, batch: Any, batch_idx: int):
         return self.end_model.validation_step(batch, batch_idx)

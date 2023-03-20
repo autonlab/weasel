@@ -154,7 +154,7 @@ class DownstreamBaseModel(LightningModule):
                                        is_binary=1 <= self.out_dim <= 2 or preds.shape[1] <= 2)
         if self.get_decision_thresh() is not None:
             stats['decision_thresh'] = self.get_decision_thresh()
-        if self.trainer is not None:
+        if self._trainer is not None:
             self.log_dict(stats, prog_bar=True)
         return stats
 

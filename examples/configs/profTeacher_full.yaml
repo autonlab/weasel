@@ -23,7 +23,8 @@ datamodule:
 
 trainer:
   _target_: pytorch_lightning.Trainer
-  gpus: 0  # set to 0 to train on CPU, and >= 1 for GPU(s)
+  devices: "auto"  # number of CPUs or GPUs to use
+  accelerator: "auto"  # "ddp" for distributed training
   min_epochs: 1
   max_epochs: 100
   # resume_from_checkpoint: ${work_dir}/last.ckpt

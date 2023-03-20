@@ -277,23 +277,6 @@ def log_hyperparameters(
     trainer.logger.log_hyperparams = no_op
 
 
-def finish(
-        config,
-        model: pl.LightningModule,
-        datamodule: pl.LightningDataModule,
-        trainer: pl.Trainer,
-        callbacks: List[pl.Callback],
-        logger: List[pl.loggers.LightningLoggerBase],
-) -> None:
-    """Makes sure everything closed properly."""
-
-    # without this sweeps with wandb logger might crash!
-    for lg in logger:
-        if isinstance(lg, pl.loggers.WandbLogger):
-            import wandb
-            wandb.finish()
-
-
 def change_labels(*args, new_label=-1, old_label=0):
     lst = []
     for arg in args:

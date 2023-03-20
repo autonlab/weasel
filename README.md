@@ -73,7 +73,7 @@ Please have a look at the research code branch, which operates on pure PyTorch.
 <details>
 <summary><b>1. New environment </b>(recommended, but optional)</summary>
 
-    conda create --name weasel python=3.7  # or other python version >=3.7
+    conda create --name weasel python=3.9
     conda activate weasel  
 </details>
 

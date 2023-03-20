@@ -24,13 +24,13 @@ from pytorch_lightning import seed_everything
 import weasel.utils.utils as utils
 
 
-@hydra.main(config_path="configs/",
-            config_name="profTeacher_full.yaml")
+@hydra.main(config_path="configs/", config_name="profTeacher_full.yaml", version_base=None)
 def run(config: DictConfig):
     utils.print_config(config, fields='all')
     seed_everything(config.seed, workers=True)
     log = utils.get_logger(__name__)
     utils.extras(config)
+    uses_wandb = config.get('logger') and config.logger.get("wandb") is not None
 
     # First we instantiate our end-model, in this case a simple 2-layer MLP, but you
     # can easily replace it with *any* neural net model, see the instructions in the Readme.
@@ -69,8 +69,13 @@ def run(config: DictConfig):
         trainer.checkpoint_callback.best_model_path
     ).end_model
     # Test the final model module directly (same as test above, but removing Weasel and training data from the code):
-    pl.Trainer().test(model=final_model, test_dataloaders=data_module.test_dataloader())
+    pl.Trainer().test(model=final_model, dataloaders=data_module.test_dataloader())
+
+    # Finishing up:
+    if uses_wandb:
+        wandb.finish()
 
 
 if __name__ == "__main__":
+    os.environ['HYDRA_FULL_ERROR'] = '1'
     run()

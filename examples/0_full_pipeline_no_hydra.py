@@ -149,7 +149,8 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 checkpoint_callback = ModelCheckpoint(monitor="Val/f1_macro", mode="max")
 
 trainer = pl.Trainer(
-    gpus=0,  # >= 1 to use GPU(s)
+    devices="auto",  # CPUs or GPUs
+    accelerator="auto",  # DDP, 'gpu', 'cpu', 'tpu' ...
     max_epochs=3,  # since just for illustratory purposes
     logger=False,
     deterministic=True,
@@ -157,8 +158,6 @@ trainer = pl.Trainer(
 )
 
 trainer.fit(model=weasel, datamodule=weasel_datamodule)
-
-# %% md
 
 ## Evaluation
 
@@ -168,6 +167,6 @@ trainer.fit(model=weasel, datamodule=weasel_datamodule)
 final_cnn_model = weasel.load_from_checkpoint(
     trainer.checkpoint_callback.best_model_path
 ).end_model
-# Test the stand-alone, fully-trained CNN model (the metrics have of course no meaning in this simulated example):
-test_statd = pl.Trainer().test(model=final_cnn_model, test_dataloaders=weasel_datamodule.test_dataloader())
+# Test the stand-alone, fully-trained CNN model:
+pl.Trainer().test(model=final_cnn_model, dataloaders=weasel_datamodule.test_dataloader())
 
